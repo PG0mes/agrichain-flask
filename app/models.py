@@ -32,10 +32,16 @@ class User(UserMixin):
         users_db.append(new_user)
         return new_user
 
-# --- CRIAÇÃO DO SUPER ADMIN AUTOMÁTICO ---
-# Adiciona o admin assim que o arquivo é lido
+
 admin_user = User("admin-id", "Super Admin", "admin@agrichain.com", "admin123", "admin")
 users_db.append(admin_user)
+
+demo_producer = User("prod-1", "Produtor João", "produtor@agrichain.com", "123456", "producer")
+demo_distributor = User("dist-1", "Logística Rápida", "distribuidor@agrichain.com", "123456", "distributor")
+demo_retailer = User("ret-1", "Mercado Central", "varejista@agrichain.com", "123456", "retailer")
+demo_consumer = User("cons-1", "Maria Consumidora", "consumidor@agrichain.com", "123456", "consumer")
+
+users_db.extend([admin_user, demo_producer, demo_distributor, demo_retailer, demo_consumer])
 
 class Product:
     def __init__(self, product_id, name, category, producer_id, producer_name, harvest_date, quantity, unit):
