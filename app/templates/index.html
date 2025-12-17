@@ -1,44 +1,84 @@
 {% extends "base.html" %}
 
+{# 1. Remove a Navbar padrão #}
+{% block navbar %}{% endblock %}
+
+{# 2. Remove as margens e padding do container principal #}
+{% block main_classes %}p-0 w-full{% endblock %}
+
+{# 3. Remove o Footer padrão (branco) para usar o transparente #}
+{% block footer %}{% endblock %}
+
 {% block content %}
-<div class="text-center py-12">
-    <h1 class="text-4xl font-extrabold text-agri-600 mb-4">🌾 AgriChain Tracker</h1>
-    <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded mb-8 inline-block">
-        <h4 class="font-bold">Agricultural Supply Chain Blockchain Tracker</h4>
+<div class="h-screen w-full bg-gradient-to-br from-green-900 via-green-800 to-green-900 flex flex-col justify-center items-center p-4 relative overflow-hidden">
+    
+    <div class="absolute top-0 left-0 w-96 h-96 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+
+    <div class="text-center mb-12 z-10 relative">
+        <div class="text-6xl mb-4 animate-bounce">🌾</div>
+        <h1 class="text-5xl md:text-7xl font-black text-white tracking-tight mb-2 drop-shadow-lg">
+            AgriChain Tracker
+        </h1>
+        <div class="h-1 w-24 bg-green-500 mx-auto mb-4 rounded-full"></div>
+        <p class="text-xl text-green-100 font-light tracking-wide max-w-2xl mx-auto opacity-90">
+            Agricultural Supply Chain Blockchain Tracker
+        </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto mt-8">
-        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
-            <h3 class="text-2xl font-bold text-green-600">1,247</h3>
-            <p class="text-gray-500">Produtos Totais</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-yellow-500">
-            <h3 class="text-2xl font-bold text-yellow-600">89</h3>
-            <p class="text-gray-500">Em Trânsito</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-500">
-            <h3 class="text-2xl font-bold text-blue-600">1,158</h3>
-            <p class="text-gray-500">Entregues</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-500">
-            <h3 class="text-2xl font-bold text-cyan-600">342</h3>
-            <p class="text-gray-500">Fornecedores</p>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl z-10 px-4">
+        
+        <a href="{{ url_for('auth.login') }}" class="group relative h-48 rounded-3xl bg-white/10 border border-white/20 backdrop-blur-md p-6 flex flex-col items-center justify-center transition-all duration-300 hover:bg-green-500 hover:border-green-400 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(34,197,94,0.6)] cursor-pointer text-decoration-none">
+            <div class="text-4xl mb-3 text-green-300 group-hover:text-white transition-colors duration-300">
+                👨‍🌾
+            </div>
+            <h3 class="text-xl font-bold text-white tracking-wider">Produtor</h3>
+            <span class="text-xs text-green-200 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 uppercase font-semibold">
+                Acessar Painel
+            </span>
+        </a>
+
+        <a href="{{ url_for('auth.login') }}" class="group relative h-48 rounded-3xl bg-white/10 border border-white/20 backdrop-blur-md p-6 flex flex-col items-center justify-center transition-all duration-300 hover:bg-green-600 hover:border-green-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(22,163,74,0.6)] cursor-pointer text-decoration-none">
+            <div class="text-4xl mb-3 text-green-300 group-hover:text-white transition-colors duration-300">
+                🚛
+            </div>
+            <h3 class="text-xl font-bold text-white tracking-wider">Distribuidor</h3>
+            <span class="text-xs text-green-200 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 uppercase font-semibold">
+                Acessar Logística
+            </span>
+        </a>
+
+        <a href="{{ url_for('auth.login') }}" class="group relative h-48 rounded-3xl bg-white/10 border border-white/20 backdrop-blur-md p-6 flex flex-col items-center justify-center transition-all duration-300 hover:bg-emerald-600 hover:border-emerald-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(5,150,105,0.6)] cursor-pointer text-decoration-none">
+            <div class="text-4xl mb-3 text-green-300 group-hover:text-white transition-colors duration-300">
+                🏪
+            </div>
+            <h3 class="text-xl font-bold text-white tracking-wider">Varejista</h3>
+            <span class="text-xs text-green-200 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 uppercase font-semibold">
+                Gerenciar Estoque
+            </span>
+        </a>
+
+        <a href="{{ url_for('auth.login') }}" class="group relative h-48 rounded-3xl bg-white/10 border border-white/20 backdrop-blur-md p-6 flex flex-col items-center justify-center transition-all duration-300 hover:bg-teal-600 hover:border-teal-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(13,148,136,0.6)] cursor-pointer text-decoration-none">
+            <div class="text-4xl mb-3 text-green-300 group-hover:text-white transition-colors duration-300">
+                👥
+            </div>
+            <h3 class="text-xl font-bold text-white tracking-wider">Consumidor</h3>
+            <span class="text-xs text-green-200 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 uppercase font-semibold">
+                Rastrear Origem
+            </span>
+        </a>
     </div>
 
-    <div class="flex flex-col md:flex-row justify-center gap-4 mt-12">
-        {% if current_user.is_authenticated %}
-            <a href="{{ url_for('products.create') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow transition">
-                📝 Registrar Novo Produto
-            </a>
-        {% else %}
-            <a href="{{ url_for('auth.register') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow transition">
-                📝 Começar Agora
-            </a>
-            <a href="{{ url_for('auth.login') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow transition">
-                🔍 Acessar Sistema
-            </a>
-        {% endif %}
+    <div class="mt-16 z-10 text-center">
+        <p class="text-green-200/80 mb-4 text-sm uppercase tracking-widest font-semibold">Ainda não faz parte da rede?</p>
+        <a href="{{ url_for('auth.register') }}" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-green-900 font-bold shadow-lg hover:shadow-green-500/50 hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-green-300">
+            <span>📝</span>
+            Criar Nova Conta
+        </a>
     </div>
+
+    <footer class="absolute bottom-4 text-green-500/30 text-xs font-mono">
+        SECURE BLOCKCHAIN CONNECTION ESTABLISHED • DEZ-2025
+    </footer>
 </div>
 {% endblock %}
