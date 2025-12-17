@@ -1,31 +1,34 @@
 graph TD
-    %% Atores e Nós
-    Produtor([👨‍🌾 Produtor])
-    Distribuidor([🚛 Distribuidor])
-    Varejista([🏪 Varejista])
-    Consumidor([👥 Consumidor])
-    Blockchain[(🔗 Blockchain / DB)]
+    %% Nós com aspas para evitar erros com emojis
+    Produtor("👨‍🌾 Produtor")
+    Distribuidor("🚛 Distribuidor")
+    Varejista("🏪 Varejista")
+    Consumidor("👥 Consumidor")
+    Blockchain[("🔗 Blockchain / DB")]
+    Etiqueta("🏷️ Etiqueta do Produto")
+    Gondola("🛒 Gôndola / Prateleira")
+    App("📱 AgriChain App")
 
     %% Fluxo do Produtor
-    Produtor -->|1. Registra Safra/Produto| Blockchain
-    Produtor -->|2. Gera QR Code/ID| Etiqueta[🏷️ Etiqueta do Produto]
+    Produtor -->|"1. Registra Safra"| Blockchain
+    Produtor -->|"2. Gera QR Code"| Etiqueta
 
     %% Fluxo do Distribuidor
-    Etiqueta -->|3. Leitura do Código| Distribuidor
-    Distribuidor -->|4. Atualiza: Em Trânsito| Blockchain
-    Distribuidor -->|5. Monitora Temperatura| Blockchain
+    Etiqueta -->|"3. Leitura do Código"| Distribuidor
+    Distribuidor -->|"4. Atualiza: Em Trânsito"| Blockchain
+    Distribuidor -->|"5. Monitora Temp"| Blockchain
 
     %% Fluxo do Varejista
-    Distribuidor -->|6. Entrega no Ponto de Venda| Varejista
-    Varejista -->|7. Confirma Recebimento| Blockchain
-    Varejista -->|8. Disponibiliza para Venda| Gôndola[🛒 Gôndola / Prateleira]
+    Distribuidor -->|"6. Entrega na Loja"| Varejista
+    Varejista -->|"7. Confirma Recebimento"| Blockchain
+    Varejista -->|"8. Põe à Venda"| Gondola
 
     %% Fluxo do Consumidor
-    Gôndola -->|9. Compra Produto| Consumidor
-    Consumidor -->|10. Escaneia QR Code| App[📱 AgriChain App]
-    App -.->|11. Consulta Origem| Blockchain
-    Blockchain -.->|12. Retorna Jornada Completa| App
+    Gondola -->|"9. Compra"| Consumidor
+    Consumidor -->|"10. Escaneia QR"| App
+    App -.->|"11. Consulta Origem"| Blockchain
+    Blockchain -.->|"12. Retorna Dados"| App
 
-    %% Estilização (Opcional)
-    classDef roles fill:#f9f,stroke:#333,stroke-width:2px;
+    %% Estilização
+    classDef roles fill:#f0fdf4,stroke:#16a34a,stroke-width:2px;
     class Produtor,Distribuidor,Varejista,Consumidor roles;
