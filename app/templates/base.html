@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriChain Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agri: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            800: '#166534',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    
+    <nav class="bg-agri-600 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="{{ url_for('main.index') }}" class="font-bold text-xl flex items-center gap-2">
+                        <span>🌾</span> AgriChain Tracker
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    {% if current_user.is_authenticated %}
+                        <span class="text-sm bg-agri-800 py-1 px-3 rounded-full">
+                            {{ current_user.name }}
+                        </span>
+                        <a href="{{ url_for('auth.logout') }}" class="hover:text-agri-100 transition">Sair</a>
+                    {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="hover:text-agri-100 transition">Entrar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mb-4 p-4 rounded-md {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-white border-t mt-auto py-6 text-center text-gray-500 text-sm">
+        &copy; 2025 AgriChain Tracker. Python/Flask Version.
+    </footer>
+</body>
+</html>
