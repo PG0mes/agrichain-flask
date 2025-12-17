@@ -1,34 +1,27 @@
-graph TD
-    %% Nós com aspas para evitar erros com emojis
-    Produtor("👨‍🌾 Produtor")
-    Distribuidor("🚛 Distribuidor")
-    Varejista("🏪 Varejista")
-    Consumidor("👥 Consumidor")
+```mermaid
+flowchart TD
+    %% Definição dos Nós com Aspas para evitar erros
+    Produtor["👨‍🌾 Produtor"]
     Blockchain[("🔗 Blockchain / DB")]
-    Etiqueta("🏷️ Etiqueta do Produto")
-    Gondola("🛒 Gôndola / Prateleira")
-    App("📱 AgriChain App")
+    Etiqueta["🏷️ Etiqueta"]
+    Distribuidor["🚛 Distribuidor"]
+    Varejista["🏪 Varejista"]
+    Gondola["🛒 Gôndola"]
+    Consumidor["👥 Consumidor"]
+    App["📱 App AgriChain"]
 
-    %% Fluxo do Produtor
+    %% Fluxo
     Produtor -->|"1. Registra Safra"| Blockchain
     Produtor -->|"2. Gera QR Code"| Etiqueta
 
-    %% Fluxo do Distribuidor
-    Etiqueta -->|"3. Leitura do Código"| Distribuidor
+    Etiqueta -->|"3. Leitura"| Distribuidor
     Distribuidor -->|"4. Atualiza: Em Trânsito"| Blockchain
-    Distribuidor -->|"5. Monitora Temp"| Blockchain
+    Distribuidor -->|"5. Entrega"| Varejista
 
-    %% Fluxo do Varejista
-    Distribuidor -->|"6. Entrega na Loja"| Varejista
-    Varejista -->|"7. Confirma Recebimento"| Blockchain
-    Varejista -->|"8. Põe à Venda"| Gondola
+    Varejista -->|"6. Confirmação"| Blockchain
+    Varejista -->|"7. Venda"| Gondola
 
-    %% Fluxo do Consumidor
-    Gondola -->|"9. Compra"| Consumidor
-    Consumidor -->|"10. Escaneia QR"| App
-    App -.->|"11. Consulta Origem"| Blockchain
-    Blockchain -.->|"12. Retorna Dados"| App
-
-    %% Estilização
-    classDef roles fill:#f0fdf4,stroke:#16a34a,stroke-width:2px;
-    class Produtor,Distribuidor,Varejista,Consumidor roles;
+    Gondola -->|"8. Compra"| Consumidor
+    Consumidor -->|"9. Scan QR"| App
+    App -.->|"10. Consulta Origem"| Blockchain
+    Blockchain -.->|"11. Retorna Dados"| App
