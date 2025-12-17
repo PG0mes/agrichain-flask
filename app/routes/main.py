@@ -34,3 +34,8 @@ def index():
     
     # Fallback
     return render_template('dashboard.html', products=[], page_title="Dashboard")
+
+@bp.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html')
